@@ -123,7 +123,6 @@ public:
     float lower_bound_roll = -1.35;
     float upper_bound_roll = 1.35;
 
-
     float max_torque = 15;
 
     float ramp(float final, float now, float ramp_k);

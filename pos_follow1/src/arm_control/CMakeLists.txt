@@ -64,8 +64,6 @@ add_dependencies(arm_node2 ${PROJECT_NAME}_gencfg)
 
 
 
-
-
 if(CMAKE_SYSTEM_PROCESSOR MATCHES "arm.*|arm|aarch64")
     # Link libraries for ARM architecture
     target_link_libraries(arm_node2 

@@ -84,23 +84,13 @@ void arx_arm::get_joint()
 command arx_arm::get_cmd()
 {
   
-    if (is_recording)
-    {
-        play.update_record(current_pos);
-        printf("is currently recording \n");
-    }
+    arx5_cmd.x           = limit<float>(arx5_cmd.x             , lower_bound_waist[0], upper_bound_waist[0]);
+    arx5_cmd.y           = limit<float>(arx5_cmd.y             , lower_bound_waist[1], upper_bound_waist[1]);
+    arx5_cmd.z           = limit<float>(arx5_cmd.z             , lower_bound_waist[2], upper_bound_waist[2]);
+    arx5_cmd.waist_roll  = limit<float>(arx5_cmd.waist_roll    , lower_bound_pitch, upper_bound_pitch);
+    arx5_cmd.waist_pitch = limit<float>(arx5_cmd.waist_pitch   , lower_bound_yaw, upper_bound_yaw);
+    arx5_cmd.waist_yaw   = limit<float>(arx5_cmd.waist_yaw     , lower_bound_roll, upper_bound_roll);   
 
-    if (play.is_playing)
-    {
-        return arx5_cmd;
-    }
-    else
-    {
-        arm_torque_mode();
-        arm_reset_mode();
-        arm_get_pos();
-        arm_teach_mode();                                      
-    }
     return arx5_cmd;
 }
 
